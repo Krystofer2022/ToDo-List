@@ -12,6 +12,9 @@ const deposit_tasks = document.querySelector('#deposit_tasks');
 var tasks = [];
 var count = 0;
 
+localStorage.setItem('task', JSON.stringify(tasks));
+localStorage.setItem('count', count);
+
 // Dandole una evento al boton de agregar tareas
 btn_agree.addEventListener('click', (e) => {
 
@@ -180,6 +183,8 @@ function add_local () {
     deposit_tasks.appendChild(div);
 
   }
+
+  count_tasks (count);
 
 }
 
