@@ -1,4 +1,18 @@
 
+let comp = true;
+comp = localStorage.getItem('comp');
+
+function lst_active () {
+  
+  if (comp == true) {
+    localStorage.setItem('tasks', {});
+    localStorage.setItem('count', 0);
+  }
+
+}
+
+lst_active ();
+
 // Input del formulario
 const inp_info = document.querySelector('#inp_info');
 
@@ -12,8 +26,10 @@ const deposit_tasks = document.querySelector('#deposit_tasks');
 var tasks = [];
 var count = 0;
 
+count_tasks (count);
+
 // Dandole una evento al boton de agregar tareas
-btn_agree.addEventListener('click', (e) => {
+btn_agree.addEventListener('click', e => {
 
   e.preventDefault();
 
@@ -33,7 +49,7 @@ btn_agree.addEventListener('click', (e) => {
 
     count = count + 1;
     count_tasks (count);
-    localStorage.setItem('count', count);
+    localStorage.setItem('count', parseInt(count));
 
   }
 
@@ -49,8 +65,11 @@ const save_task = inf => {
   }
 
   tasks.push(obj);
-
-  localStorage.setItem('task', JSON.stringify(tasks));
+  
+  let data = JSON.stringify(tasks);
+  console.log(data);
+  localStorage.setItem('task', data);
+  localStorage.setItem('comp', comp = false);
 
   view_tasks();
 
@@ -124,21 +143,21 @@ function delete_task (_id) {
 
   tasks.splice(index, 1);
   
-  localStorage.setItem('task', JSON.stringify(tasks));
+  localStorage.setItem('task', tasks);
 
 }
 
 function count_tasks (count) {
   
   document.querySelector('#task').textContent = `Tasks: ${count}`;
-  localStorage.setItem('count', count);
   
 }
 
 function add_local () {
 
-  count = parseInt(localStorage.getItem('count'));
-  tasks = JSON.parse(localStorage.getItem('task'))
+  count = localStorage.getItem('count');
+  data = localStorage.getItem('task');
+  let tasks = JSON.parse(data);
   
   let div;
 
