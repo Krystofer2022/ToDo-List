@@ -1,11 +1,4 @@
 
-window.onload = lst;
-
-function lst () {
-  localStorage.setItem('task', {});
-  localStorage.setItem('count', 0);
-}
-
 // Input del formulario
 const inp_info = document.querySelector('#inp_info');
 
@@ -190,6 +183,5 @@ function add_local () {
 
 }
 
-count_tasks (count);
 add_local ();
 count_tasks (count);
